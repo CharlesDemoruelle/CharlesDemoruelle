@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      z-index: 2;
+    }
+
+    #boxTwo {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      z-index: 2;
+    }
+
+    #boxThree {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      z-index: 2;
+    }
+
+    #hit {
+      color: white;
+      text-align: center;
+      font-size: 200%;
+      position: fixed;
+      margin-left: 0px;
+      z-index: 3;
+    }
+
+    #miss {
+      color: white;
+      text-align: center;
+      font-size: 200%;
+      position: fixed;
+      margin-left: 0px;
+      margin-top: 35px;
+      z-index: 3;
+    }
+
+    #accuracy {
+      color: white;
+      text-align: center;
+      font-size: 200%;
+      position: fixed;
+      margin-left: 0px;
+      margin-top: 70px;
+      z-index: 3;
+    }
+
+    #background {
+      background-color: black;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 1000%;
+      width: 10000%;
+      margin-left: -10px;
+      margin-top: -1665px;
+      z-index: 1;
+    }
+
+    #body {
+      overflow: clip;
+      cursor: cell;
+    }
+  </style>
+</head>
+
+<body id="body">
+  <div id="hit">Hit: 0
+  </div>
+  <div id="miss">Miss: 0
+  </div>
+  <div id="accuracy">Accuracy: 0%
+  </div>
+  <img id="box"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/300px-Target_Corporation_logo_%28vector%29.svg.png">
+  <img id="boxTwo"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/300px-Target_Corporation_logo_%28vector%29.svg.png">
+  <img id="boxThree"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/300px-Target_Corporation_logo_%28vector%29.svg.png">
+  <img id="background"
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCjHiwUkEQiZbmYnoN85L7fOmdyE7JTLzbOqrHzsc&s">
+</body>
+
+</html>
+
+<script>
+  var x = 0
+  var xTwo = 0
+  var xThree = 0
+  var y = 0
+  var yTwo = 0
+  var yThree = 0
+  var score = 0
+  var scorePerClick = 1
+  var missScore = 0
+  var missScorePerClick = 1
+  var shotsTaken = 0
+  var accurate = 0
+
+  document.getElementById("box").style.left = "630px"
+  document.getElementById("box").style.top = "320px"
+  document.getElementById("boxTwo").style.left = "530px"
+  document.getElementById("boxTwo").style.top = "320px"
+  document.getElementById("boxThree").style.left = "730px"
+  document.getElementById("boxThree").style.top = "320px"
+  document.getElementById("box").addEventListener("click", clickHandler)
+  document.getElementById("boxTwo").addEventListener("click", clickHandlerTwo)
+  document.getElementById("boxThree").addEventListener("click", clickHandlerThree)
+  document.getElementById("box").addEventListener("click", clickHandlerFour)
+  document.getElementById("boxTwo").addEventListener("click", clickHandlerFour)
+  document.getElementById("boxThree").addEventListener("click", clickHandlerFour)
+  document.getElementById("background").addEventListener("click", clickHandlerFive)
+  document.getElementById("body").addEventListener("click", clickHandlerSix)
+
+  function clickHandler() {
+
+    x = Math.floor(Math.random() * 1286 - 10)
+    document.getElementById("box").style.left = x + "px";
+    y = Math.floor(Math.random() * 680 - 10)
+  }
+  function clickHandlerTwo() {
+
+    xTwo = Math.floor(Math.random() * 1286 - 10)
+    document.getElementById("boxTwo").style.left = xTwo + "px";
+    yTwo = Math.floor(Math.random() * 680 - 10)
+    document.getElementById("boxTwo").style.top = yTwo + "px";
+  }
+  function clickHandlerThree() {
+    xThree = Math.floor(Math.random() * 1286 - 10)
+    document.getElementById("boxThree").style.left = xThree + "px";
+    yThree = Math.floor(Math.random() * 680 - 10)
+    document.getElementById("boxThree").style.top = yThree + "px";
+  }
+  function clickHandlerFour() {
+    score = scorePerClick + score;
+    document.getElementById("hit").innerText = "Hit: " + score
+  }
+  function clickHandlerFive() {
+    missScore = missScorePerClick + missScore
+    document.getElementById("miss").innerText = "Miss: " + missScore
+  }
+  function clickHandlerSix() {
+    shotsTaken = scorePerClick + shotsTaken
+    accurate = score / shotsTaken * 100
+    accurate = Math.round(accurate)
+    document.getElementById("accuracy").innerText = "Accuracy: " + accurate + "%"
+  }
+
+</script>

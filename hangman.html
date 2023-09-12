@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+  <h1>Hangman Game</h1>
+  <p id="wordDisplay"></p>
+  <input id="input" placeholder="Yo yo puta letter mf">
+  <button id="guessButton">You think you know everything huh?</button>
+  <p id="message"></p>
+
+  
+</body>
+</html>
+<script>
+
+var word = "yo mama";
+var guessedLetters = [];
+var correctLetters = [];
+
+
+var wordDisplay = document.getElementById("wordDisplay");
+var input = document.getElementById("input");
+var guessButton = document.getElementById("guessButton");
+var message = document.getElementById("message");
+
+guessButton.addEventListener("click", guessing)
+
+function theWord() {
+    var display = " ";
+    for (var i = 0; i < word.length; i++) {
+        if (correctLetters.includes(word[i])) {
+            display += word[i];
+        } 
+        else {
+            display += " _";
+        }
+    }
+    return display;
+}
+
+function updateDisplay() {
+    wordDisplay.textContent = theWord();
+    input.value = "";
+}
+
+function guessing() {
+    var letter = input.value.toLowerCase();
+
+    if (guessedLetters.includes(letter)) {
+        message.textContent = "You've already guessed that letter.";
+        return;
+    }
+
+    guessedLetters.push(letter);
+
+    if (word.includes(letter)) {
+        correctLetters.push(letter);
+        message.textContent = "YAH";
+    } else {
+        message.textContent = "Nah Bro";
+    }
+
+    updateDisplay();
+
+    
+};
+
+updateDisplay();
+
+</script>

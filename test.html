@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="1333" height="804"></canvas>
+    </canvas>
+</body>
+
+</html>
+<script>
+    let box1 = {x: 100, y: 100, width: 50, height: 50, dx: 2, dy: 2};
+let box2 = {x: 200, y: 200, width: 50, height: 50, dx: -2, dy: -2};
+
+ctx.fillStyle = "red";
+ctx.fillRect(box1.x, box1.y, box1.width, box1.height);
+
+ctx.fillStyle = "blue";
+ctx.fillRect(box2.x, box2.y, box2.width, box2.height);
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // update positions
+  box1.x += box1.dx;
+  box1.y += box1.dy;
+  box2.x += box2.dx;
+  box2.y += box2.dy;
+
+  // draw boxes
+  ctx.fillStyle = "red";
+  ctx.fillRect(box1.x, box1.y, box1.width, box1.height);
+
+  ctx.fillStyle = "blue";
+  ctx.fillRect(box2.x, box2.y, box2.width, box2.height);
+}
+
+animate();
+function checkCollisions() {
+  if (
+    box1.x < box2.x + box2.width &&
+    box1.x + box1.width > box2.x &&
+    box1.y < box2.y + box2.height &&
+    box1.y + box1.height > box2.y
+  ) {
+    // boxes have collided, reverse velocities
+    box1.dx *= -1;
+    box1.dy *= -1;
+    box2.dx *= -1;
+    box2.dy *= -1;
+  }
+}
+
+setInterval(checkCollisions, 10);
+</script>

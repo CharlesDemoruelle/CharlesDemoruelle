@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* CSS code here */
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section h3 {
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background-color: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background-color: #7ed321;
+      transition: width 0.3s ease;
+    }
+
+    .food-log-item {
+      margin-bottom: 5px;
+    }
+
+    .calendar-day {
+      display: inline-block;
+      margin-right: 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .calendar-day.checked {
+      background-color: #7ed321;
+      color: #fff;
+    }
+
+    .calendar-day.kickass {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="section">
+      <h3>Goal/Limit</h3>
+      <p>Calorie Goal: <span id="calorie-goal"></span></p>
+      <p>Protein Goal: <span id="protein-goal"></span> grams</p>
+    </div>
+
+    <div class="section">
+      <h3>Intake</h3>
+      <p>Calories Intake: <span id="calorie-intake"></span></p>
+      <p>Protein Intake: <span id="protein-intake"></span> grams</p>
+    </div>
+
+    <div class="section">
+      <h3>Progress</h3>
+      <div class="progress-bar">
+        <div id="calorie-progress" class="progress-bar-inner"></div>
+      </div>
+      <div class="progress-bar">
+        <div id="protein-progress" class="progress-bar-inner"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Add Food</h3>
+      <input type="text" id="food-input" placeholder="Enter the food name">
+      <input type="number" id="calories-input" placeholder="Enter the calorie amount">
+      <input type="number" id="protein-input" placeholder="Enter the protein amount">
+      <button id="add-food-button">Add Food</button>
+    </div>
+
+    <div class="section">
+      <h3>Foods You Eat</h3>
+      <div id="food-log" class="food-log"></div>
+    </div>
+
+    <div class="section">
+      <h3>Goal Tracker</h3>
+      <div class="calendar">
+        <div class="calendar-day" id="day-1"></div>
+        <div class="calendar-day" id="day-2"></div>
+        <div class="calendar-day" id="day-3"></div>
+        <div class="calendar-day" id="day-4"></div>
+        <div class="calendar-day" id="day-5"></div>
+        <div class="calendar-day" id="day-6"></div>
+        <div class="calendar-day" id="day-7"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript code here
+    // Initialize variables
+    let calorieGoal = 2000; // Calorie goal for the day
+    let proteinGoal = 50; // Protein goal in grams for the day
+
+    let calorieIntake = 0; // Total calorie intake for the day
+    let proteinIntake = 0; // Total protein intake for the day
+
+    let foodLog = []; // Array to store food entries
+
+    // Function to update the progress section
+    function updateProgress() {
+      // Update goal/limit section
+      document.getElementById('calorie-goal').textContent = calorieGoal;
+      document.getElementById('protein-goal').textContent = proteinGoal;
+
+      // Update intake section
+      document.getElementById('calorie-intake').textContent = calorieIntake;
+      document.getElementById('protein-intake').textContent = proteinIntake;
+
+      // Calculate progress percentage with limit
+      const calorieProgress = Math.min((calorieIntake / calorieGoal) * 100, 100);
+      const proteinProgress = Math.min((proteinIntake / proteinGoal) * 100, 100);
+
+      // Update progress bar widths
+      document.getElementById('calorie-progress').style.width = `${calorieProgress}%`;
+      document.getElementById('protein-progress').style.width = `${proteinProgress}%`;
+
+      // Update calendar if goals are met
+      if (calorieProgress >= 100 && proteinProgress >= 100) {
+        const currentDay = new Date().getDay();
+        const dayElement = document.getElementById(`day-${currentDay}`);
+        dayElement.textContent = 'KickAss!';
+        dayElement.classList.add('kickass');
+      }
+    }
+
+   // Function to add food entry to the log
+function addFoodEntry() {
+  const food = document.getElementById('food-input').value;
+  const calories = parseInt(document.getElementById('calories-input').value);
+  const protein = parseInt(document.getElementById('protein-input').value);
+
+  // Create food entry object
+  const entry = {
+    food: food,
+    calories: calories,
+    protein: protein,
+    date: new Date().toISOString().split('T')[0]
+  };
+
+  // Add entry to food log
+  foodLog.push(entry);
+
+  // Update intake values
+  calorieIntake += calories;
+  proteinIntake += protein;
+
+  // Update progress section
+  updateProgress();
+
+  // Update food log section
+  const foodLogElement = document.getElementById('food-log');
+  const foodLogItem = document.createElement('div');
+  foodLogItem.classList.add('food-log-item');
+  foodLogItem.textContent = `${food} - ${calories} calories, ${protein} grams of protein`;
+  foodLogElement.appendChild(foodLogItem);
+
+  // Clear input fields
+  document.getElementById('food-input').value = '';
+  document.getElementById('calories-input').value = '';
+  document.getElementById('protein-input').value = '';
+}
+
+
+    // Function to update the calendar
+    function updateCalendar() {
+      const currentDate = new Date();
+      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+      // Get the current day of the week (0-6)
+      const currentDay = currentDate.getDay();
+
+      // Iterate over the calendar days
+      for (let i = 1; i <= 7; i++) {
+        const dayElement = document.getElementById(`day-${i}`);
+        const date = new Date(currentDate);
+        date.setDate(date.getDate() - (currentDay - i));
+
+        const dayOfWeek = daysOfWeek[date.getDay()];
+        const dayOfMonth = date.getDate();
+
+        dayElement.textContent = `${dayOfWeek}, ${dayOfMonth}`;
+
+        // Check if the goal was met for the day
+        const goalMet = checkGoalMet(date);
+        if (goalMet) {
+          dayElement.classList.add('checked');
+        } else {
+          dayElement.classList.remove('checked');
+        }
+      }
+    }
+
+    // Function to check if the goal was met for a specific date
+    function checkGoalMet(date) {
+      const goalDate = new Date(date);
+      goalDate.setHours(0, 0, 0, 0);
+
+      // Iterate over food log and check if entries match the goal date
+      for (let i = 0; i < foodLog.length; i++) {
+        const entryDate = new Date(foodLog[i].date);
+        entryDate.setHours(0, 0, 0, 0);
+
+        if (entryDate.getTime() === goalDate.getTime()) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    // Add event listener to the Add Food button
+    document.getElementById('add-food-button').addEventListener('click', addFoodEntry);
+
+    // Update calendar on page load
+    updateCalendar();
+  </script>
+</body>
+</html>
+

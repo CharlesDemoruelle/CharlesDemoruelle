@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+
+  </style>
+</head>
+<body>
+    <canvas id="canvas" width="1333" height="804"></canvas>
+</canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var y = 100
+    var x = 100
+    var speedPerClick = 10
+    var xSpeed = 10
+    var ySpeed = 10
+
+    document.addEventListener("keydown", movementKey)
+    function drawFrame(){
+       //ctx.clearRect(0,0,1333,804)
+        ctx.fillRect(x,y,15,15)
+        }
+        function movementKey(e) {
+            if (e.key === "w"){
+                y=y-speedPerClick
+            }
+            if (e.key === "s"){
+                y=y+speedPerClick
+            }
+            if (e.key === "a"){
+                x=x-speedPerClick
+            }
+            if (e.key === "d"){
+                x=x+speedPerClick
+            }
+        }
+
+    
+        setInterval(drawFrame,16)  
+        setInterval(movementKey,16)  
+</script>

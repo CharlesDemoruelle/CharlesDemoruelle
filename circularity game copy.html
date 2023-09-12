@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1350" height="760"></canvas>
+    </canvas>
+
+</body>
+
+</html>
+<script>
+   var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var y = []
+    var x = []
+    var blockX = 590
+    var blockY = 300
+    var blockL = 200
+    var blockW = 75
+    var speed = []
+    var yspeed = []
+    var color = []
+    var runX
+    var riseY 
+    var slope
+    for (var i = 0; i < 100; i = i + 1) {
+        x.push(Math.random() * 1330)
+        y.push(Math.random() * 700)
+        speed.push(Math.random() * 15)
+        yspeed.push(Math.random() * 15)
+        color.push("hsl(" + Math.random() * 360 + ",100%,50%)")
+    }
+
+    function drawFrame() {
+      //  ctx.clearRect(0, 0, 1350, 760)
+        ctx.fillStyle = "black"
+        ctx.fillRect(blockX,blockY,blockL,blockW,)
+        for (var i = 0; i < 100; i = i + 1) {
+            ctx.fillStyle = color[i]
+            ctx.beginPath()
+            ctx.arc(x[i], y[i], 10, 0, Math.PI * 2)
+            ctx.fill()
+            y[i] = y[i] + yspeed[i]
+            x[i] = x[i] + speed[i]
+            if (y[i] >= 750) {
+                yspeed[i] = yspeed[i] * -1
+            }
+            if (y[i] <= -5) {
+                yspeed[i] = yspeed[i] * -1
+            }
+            if (x[i] >= 1333) {
+                speed[i] = speed[i] * -1
+            }
+            if (x[i] <= -5) {
+                speed[i] = speed[i] * -1
+            }
+           if (x[i] + 10 >= blockX && x[i] - 10 <= blockX + blockL && y[i] + 10 >= blockY && y[i] - 10 <= blockY + blockW ) {
+           if (x[i] + 10 <= blockX + blockL ) {
+                speed[i] = speed[i] *-1
+               
+            }
+            
+            if (y[i] +10 <= blockY + blockW ){
+                yspeed[i] = yspeed[i] * -1
+               
+            }
+            if (x[i] - 10 >= blockX ) {
+                speed[i] = speed[i] *-1
+               
+            }
+            
+            
+            if (y[i] -10 >= blockY ){
+                yspeed[i] = yspeed[i] * -1
+               
+            }
+        }
+    }
+    }
+    
+    setInterval(drawFrame, 16)
+</script>

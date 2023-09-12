@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p id="gameText">Welcome to this Interactive Game</p>
+  <p id="message"></p>
+  <button id="optionOne">Continue </button>
+
+</body>
+
+</html>
+<script>
+  var optionOne = document.getElementById("optionOne")
+  var message = document.getElementById("message")
+  var a = 0
+  var b = 0
+
+
+  var text = [
+    {
+      line: 0,
+      text: "hello there",
+      nextLine: 2,
+
+    },
+    {
+      line: 1,
+      text: "goodby",
+      nextLine: null,
+    },
+    {
+      line: 2,
+      text: "my name is jim",
+      nextLine: 1,
+    }
+  ]
+ var two = [
+  {line: 2,
+    text: "fdsafa",
+    nextLine:null
+  }
+ ]
+  optionOne.addEventListener("click", yuh)
+  
+
+  function yuh() {
+    message.textContent = two[b].text
+    b = text[b].nextLine
+  }
+</script>

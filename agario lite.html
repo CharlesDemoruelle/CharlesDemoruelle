@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1350" height="760"></canvas>
+    </canvas>
+
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var enemyY = []
+    var enemyX = []
+    var x1 = enemyX.splice(0, 5)
+    var x2 = enemyX.splice(5, 5)
+    var y1
+    var y2
+    var enemySpeed = []
+    var enemySpeedy = []
+    var enemyRadius = []
+    var color = []
+    var mouseX = 100
+    var mouseY = 100
+    var mouseR = 10
+    var score = 0
+    var health = "alive"
+
+    document.addEventListener("mousemove", mouseMoveFunction)
+   
+
+    for (var i = 0; i < 20; i = i + 1) {
+        enemyX.push(Math.random() - 150)
+        enemyY.push(Math.random() * 700)
+        enemySpeed.push(Math.random() * 10)
+        enemySpeedy.push(Math.random() * 10)
+        color.push("hsl(" + Math.random() * 360 + ",100%,50%)")
+        enemyRadius.push(Math.random() * 50 + 5)
+    }
+   
+       
+    function drawFrame() {
+        ctx.clearRect(0, 0, 1350, 760)
+ 
+        if(health === "alive"){
+        
+       
+        ctx.beginPath()
+        ctx.arc(mouseX, mouseY, mouseR, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.font = "48px serif";
+        }
+        
+
+
+        for (var i = 0; i < 20; i = i + 1) {
+            ctx.fillStyle = color[i]
+            ctx.beginPath()
+            ctx.arc(enemyX[i], enemyY[i], enemyRadius[i], 0, Math.PI * 2)
+            ctx.fill()
+            enemyY[i] = enemyY[i] + enemySpeedy[i]
+            enemyX[i] = enemyX[i] + enemySpeed[i]
+
+            if (enemyX[i] >= 1350) {
+                enemyX[i] = -150
+            }
+            if (enemyY[i] >= 760) {
+                enemyY[i] = -20
+            }
+    var a = mouseY-enemyY[i]
+    var b = mouseX-enemyX[i]
+            var distance = (Math.sqrt(Math.pow(a,2)+Math.pow(b,2)))
+            if (enemyRadius[i]+10 >= distance){
+                
+                if (mouseR > enemyRadius[i]){
+                mouseR = mouseR + enemyRadius[i]
+                enemyX[i] = -150
+            enemyY[i] = -20
+            }
+           if(mouseR < enemyRadius[i]){
+            mouseR = 0
+            health = "dead"
+           }
+           
+            
+            
+
+        }
+        
+    }
+   
+}
+   
+    
+
+
+
+    function mouseMoveFunction(e) {
+        mouseX = e.x
+        mouseY = e.y
+
+    }
+    setInterval(drawFrame, 16)
+    s
+</script>

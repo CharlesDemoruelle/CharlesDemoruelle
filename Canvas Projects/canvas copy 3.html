@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="1333" height="804"></canvas>
+    </canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var y = 100
+    var x = 100
+    var speed = 5
+    var yspeed = 5
+
+    function drawFrame(){
+       /*]] ctx.clearRect(0,0,1333,804)*/
+        ctx.fillRect(x,y,15,15)
+        y=y+yspeed
+        x=x+speed
+        if (y>=633){
+        
+        ctx.fillStyle= "green"
+    }
+    if(y<=130){
+   
+    ctx.fillStyle= "purple"
+
+    }
+    if(y>=402){
+        yspeed=yspeed-.25
+    }
+    if(y<=402){
+        yspeed=yspeed+.25
+    }
+    if(x>=666.5){
+        speed=speed-.25
+    }
+    if(x<=666.5){
+        speed=speed+.25
+    }
+}
+
+        setInterval(drawFrame,16)
+
+    /*Ceter is 340*/ 
+
+</script>

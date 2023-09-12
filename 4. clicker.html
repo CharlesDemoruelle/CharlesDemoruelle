@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    #picture{
+        margin-left:31%;
+        margin-top:7%;
+        width:18%;
+    }
+    #chip{
+       text-align: center;
+      }
+    #picturetwo{
+      margin-left:0%;
+      width:10%;
+      float: left;
+    }
+    
+    #body{
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPbklhhxfHzPdN56cey5NUj6IxTiohR68KPQ&usqp=CAU");
+      background-repeat: no-repeat; 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height:20%;
+      }
+    #upgradetext{
+      color:aliceblue;
+      margin-left: 2%;
+      font-size: 135%;
+    }
+    #doubledoritos{
+      color:aliceblue;
+      font-size:135%;
+      margin-left:2%;
+    }
+    #autobutton{
+      width: 30%;
+    }
+   
+    
+    
+  </style>
+</head>
+<body id="body">
+  <h2 id="chip">0 Doritos</h2>
+  <h2 id="upgradetext"> Upgrades!</h2>
+  <div id="doubledoritos">x2 Doritos</div>
+  
+    
+  <p id="autobutton"><img id="autobutton" src="data:image/jpeg;base64,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"></p>
+  <p id="upgradetext">Auto Helper</p>
+  <img id="picture" src="https://i.kym-cdn.com/photos/images/newsfeed/000/924/455/cb2.png">
+  <img id="picturetwo" src="https://www.mypokecard.com/en/Gallery/my/galery/BqxpwZGRdDU7.jpg">
+   
+</body>
+</html>
+<script>
+  var score=0
+  var scorePerClick=1
+  
+    document.getElementById("picture").addEventListener("click",clickHandler)
+    document.getElementById("autobutton").addEventListener("click",upgrade)
+    document.getElementById("picturetwo").addEventListener("click",autoClick )
+    function clickHandler(){
+    score=score+scorePerClick
+      document.getElementById("chip").innerText=score+" Doritos"
+	 
+}
+
+
+function upgrade(){
+  if(score>=5){
+  score=score-5
+  scorePerClick=scorePerClick*2}
+  else{
+  score=score
+  scorePerClick=1
+  }
+}
+function autoClick(){
+  if(score>=100){
+    score=score-100
+    setInterval(clickHandler,1000)
+  }
+  else{
+    score=score
+  }
+}
+
+</script>

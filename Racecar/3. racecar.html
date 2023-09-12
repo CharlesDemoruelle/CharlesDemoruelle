@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+        #racecarOne {
+            position: absolute;
+            margin-top: 180px;
+            width: 255px;
+            z-index: 3;
+
+        }
+
+        #racecarTwo {
+            position: absolute;
+            margin-top: 457px;
+            width: 270px;
+            z-index: 3;
+        }
+
+        #body {
+            overflow: clip;
+        }
+
+        #racetrack {
+            background-position: center;
+            height: 600px;
+            width: 1370px;
+            margin-top: 3%;
+            margin-left: 38px;
+            z-index: 2;
+        }
+        #grass {
+            background-image: url(https://media.istockphoto.com/id/1175177239/photo/green-grass-lawn-top-view.jpg?b=1&s=170667a&w=0&k=20&c=gaeJujWCLhUmyunOAce4ACr-5NR8P8MmY_X8naHzznQ=);
+            background-size: cover;
+            margin-top: -30px;
+            margin-left: -50px;
+            height: 1000px;
+            width: 3000px;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="grass">
+    <img id="racecarOne"
+        src="https://www.seekpng.com/png/full/363-3638244_sell-your-car-with-motorsave-derby-car-top.png">
+    <img id="racecarTwo"
+        src="https://www.freeiconspng.com/thumbs/top-car-view-png/white-mercedes-benz-top-car-png-4.png">
+    <img id="racetrack" 
+        src="https://t4.ftcdn.net/jpg/04/09/43/13/360_F_409431385_zbEsyRji5mvhgxizOKDdhZxXWWVTH2V6.jpg">
+</div>
+    </body>
+
+
+</html>
+<script>
+    var speedPerClick = 10
+    var x = 0
+    var xTwo = 0
+
+    document.addEventListener("keydown", keyHandler)
+    document.addEventListener("keydown", keyHandlerTwo)
+                    
+  
+    function keyHandler(e) {
+        if (e.key === "r") {
+            x = speedPerClick + x
+            document.getElementById("racecarOne").style.left = x + "px";
+        }
+    }
+    function keyHandlerTwo(e) {
+        if (e.key === "p") {
+            xTwo = speedPerClick + xTwo
+            document.getElementById("racecarTwo").style.left = xTwo + "px";
+        }
+    }
+</script>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="1333" height="804"></canvas>
+    </canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var y = 100
+    var x = 100
+    var xTwo = 1233
+    var yTwo = 704
+    var speed = 0
+    var yspeed = 0
+    var speedTwo = 0
+    var ySpeedTwo = 0
+    function drawFrame(){
+       /* ctx.clearRect(0,0,1333,804)*/
+        ctx.fillRect(x,y,7,7)
+        ctx.fillRect(xTwo,yTwo,7,7)
+        
+        y=y+yspeed
+        x=x+speed
+
+        yTwo=yTwo+ySpeedTwo
+        xTwo=xTwo+speedTwo
+        
+        if (y>=633){
+        
+        ctx.fillStyle= "green"
+    }
+    if(y<=130){
+   
+    ctx.fillStyle= "purple"
+    }
+    if (yTwo>=633){
+        
+        ctx.fillStyle= "red"
+    }
+    if(yTwo<=130){
+   
+    ctx.fillStyle= "blue"
+
+    }
+    if(y>=yTwo){
+        yspeed=yspeed-.3
+    }
+    if(y<=yTwo){
+        yspeed=yspeed+.3
+    }
+    if(x>=xTwo){
+        speed=speed-.3
+    }
+    if(x<=xTwo){
+        speed=speed+.3
+    }
+    if(yTwo<=y){
+        ySpeedTwo=ySpeedTwo+.3
+    }
+    if(yTwo>=y){
+        ySpeedTwo=ySpeedTwo-.3
+    }
+    if(xTwo<=x){
+        speedTwo=speedTwo+.3
+    }
+    if(xTwo>=x){
+        speedTwo=speedTwo-.3
+    }
+    if (y>=804){
+        yspeed=yspeed*-1
+       }
+    if(y<=0){
+    yspeed=yspeed*-1
+    }
+    if (yTwo>=804){
+        ySpeedTwo=ySpeedTwo*-1
+       }
+    if(yTwo<=0){
+        ySpeedTwo=ySpeedTwo*-1
+    }
+    if (xTwo>=1333){
+        speedTwo=speedTwo*-1
+       }
+    if(xTwo<=0){
+        ySpeedTwo=ySpeedTwo*-1
+    }
+    if (x>=1333){
+        speedTwo=speedTwo*-1
+       }
+    if(x<=0){
+        speedTwo=speedTwo*-1
+    }
+}
+
+        setInterval(drawFrame,.1)
+
+    /*Ceter is 340*/ 
+
+</script>

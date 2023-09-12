@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    #gameTitle {
+      padding-left: 50px;
+    }
+
+    #gameText {
+      animation-name: fen;
+    }
+
+    #optionTwo,
+    #optionThree,
+    #optionFour {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="gameTitle">Story Game Test</h1>
+
+  <p id="gameText">Welcome to this Interactive Game</p>
+
+  <button id="optionOne">Continue </button>
+  <button id="optionTwo">option 2 </button>
+  <button id="optionThree">option 3 </button>
+  <button id="optionFour">option 4 </button>
+
+  <p id="message"></p>
+
+
+
+  <canvas id="canvas" width="1333" height="804"></canvas>
+  </canvas>
+</body>
+
+</html>
+<script>
+  var canvas = document.getElementById("canvas")
+  var ctx = canvas.getContext("2d")
+  var optionOne = document.getElementById("optionOne")
+  var optionTwo = document.getElementById("optionTwo")
+  var optionThree = document.getElementById("optionThree")
+  var optionFour = document.getElementById("optionFour")
+  var message = document.getElementById("message")
+  var gameText = document.getElementById("gameText")
+  var currentLine = 0
+
+  var text = [
+    {
+      line: 0,
+      text: "Hello adventurerererere. I have an exquisite journey for you. Do you wish to accept?",
+      nextLine: 2,
+
+    },
+
+  ]
+
+  var welcome = true
+
+
+  optionOne.addEventListener("click", optionChoiceOne);
+  optionTwo = document.getElementById("click", optionChoiceTwo)
+  optionThree = document.getElementById("click", optionChoiceThree)
+  optionFour = document.getElementById("click", optionChoiceFour)
+
+  //Welcome screen to next
+
+  function optionChoiceOne() {
+    optionTwo.style.display = "inline-block";
+    gameText.textContent = "Hello adventurerererere. I have an exquisite journey for you. Do you wish to accept?"
+    optionOne.textContent = "Accept"
+    optionTwo.textContent = "Decline"
+  
+  }
+  function optionChoiceTwo() {
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*first load the screen with one button saying continue as it is the welcome screen.
+  When the user clicks the continue button 1) The first part of the story starts. 2) If click accept the jouney,
+  the narrator asks for a name which uses input code that is used in hangman. If clicke option 2 (decline)*/
+
+</script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    #canvas {
+      background-color: blue;
+      position: absolute;
+      z-index: 2;
+      
+    }
+    #gameTitle {
+      padding-left: 50px;
+    }
+
+    #gameText {
+      animation-name: fen;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <h1 id="gameTitle">Story Game Test</h1>
+
+  <p id="gameText">Welcome to this Interactive Game</p>
+
+  <button id="optionOne">Continue </button>
+  <button id="optionTwo">option 2 </button>
+  <button id="optionThree">option 3 </button>
+  <button id="optionFour">option 4 </button>
+
+  <p id="message"></p>
+
+
+
+  
+  
+</body>
+
+</html>
+<script>
+  var canvas = document.getElementById("canvas")
+  var ctx = canvas.getContext("2d")
+  var optionOne = document.getElementById("optionOne")
+  var optionTwo = document.getElementById("optionTwo")
+  var optionThree = document.getElementById("optionThree")
+  var optionFour = document.getElementById("optionFour")
+  var message = document.getElementById("message")
+
+  var text = [
+    {
+      line:0,
+      text: "hello there",
+      nextLine:2,
+    },
+    {
+      line:1,
+      text: "goodby",
+      nextLine: null,
+    },
+    { 
+      line:2,     
+      text: "my name is jim",
+      nextLine:null,
+    }
+  ]
+
+  var welcome = true
+
+  ctx.font = "300px Arial";
+  ctx.fillText("hello",100,100)
+
+  optionOne.addEventListener("click", changeWelcome)
+  optionTwo = document.getElementById("click", optionChoiceTwo)
+  optionThree = document.getElementById("click", optionChoiceThree)
+  optionFour = document.getElementById("click", optionChoiceFour)
+
+
+  //welcome (contine to next screen)
+
+
+  function changeWelcome() {
+    if (welcome === true) {
+      gameText.textContent = "Hello young traveler. You seem very adventerous today! What is your name if I may ask."
+      var start = true;
+    }
+
+    if (welcome === false) {
+      optionOne.textContent = "ur mom"
+    }
+    welcome = false
+
+  }
+
+
+
+
+
+
+  function drawFrame() {
+    ctx.fillRect(70,70,70,70)
+
+  }
+
+  setInterval(drawFrame, 16)
+
+
+
+//use document.getelementbyid to grab each option
+//if the option is 'selected' change teh innerhtml to option 1 <
+//or you can add something in to it, 
+
+
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    #bird {
+        width:100px;
+        animation-name: big;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        
+    }
+    @keyframes big {
+        0%{
+            width:100px;
+            transform: translateX(1000px);
+        
+            
+        }
+        50%{
+            width:750px;
+            transform: rotateX(180deg);
+            transform: rotateY(270deg);
+           
+            
+        }
+        100%{
+            width:100px;
+            rotate: 360deg
+        }
+    }
+  </style>
+</head>
+<body>
+<img id="bird" src="https://assets.stickpng.com/images/584c69846e7d5809d2fa6366.png">
+</body>
+</html>
